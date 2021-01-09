@@ -1,5 +1,6 @@
 import re
 
+
 class Validator:
     """
     Validator validates a passport.
@@ -17,17 +18,17 @@ class Validator:
 
     def iyr(self) -> bool:
         if 'iyr' not in self.passport:
-            return False        
+            return False
         return int(self.passport['iyr']) >= 2010 and int(self.passport['iyr']) <= 2020
 
     def eyr(self) -> bool:
         if 'eyr' not in self.passport:
-            return False        
+            return False
         return int(self.passport['eyr']) >= 2020 and int(self.passport['eyr']) <= 2030
 
     def hgt(self) -> bool:
         if 'hgt' not in self.passport:
-            return False        
+            return False
         if self.passport['hgt'].endswith('cm'):
             i = self.passport['hgt'][:-2]
             return int(i) >= 150 and int(i) <= 193
@@ -38,7 +39,7 @@ class Validator:
 
     def hcl(self) -> bool:
         if 'hcl' not in self.passport:
-            return False        
+            return False
         if self.passport['hcl'][0] != '#':
             return False
 
@@ -50,19 +51,17 @@ class Validator:
 
     def ecl(self) -> bool:
         if 'ecl' not in self.passport:
-            return False        
+            return False
         allowed = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
         return self.passport['ecl'] in allowed
 
-
     def pid(self) -> bool:
         if 'pid' not in self.passport:
-            return False        
+            return False
         return len(self.passport['pid']) == 9
 
-    
 
-my_file=open("day04/input.txt","r")
+my_file = open("day04/input.txt", "r")
 content = my_file.read()
 
 valids = 0
