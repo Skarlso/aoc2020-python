@@ -1,4 +1,4 @@
-my_file=open("day03/input.txt","r")
+my_file = open("day03/input.txt", "r")
 content = my_file.read()
 
 area = []
@@ -11,11 +11,11 @@ side = 0
 bottom = 0
 trees = 0
 
-while bottom < len(area)-1:
+while bottom < len(area) - 1:
     if area[bottom][side] == '#':
         trees += 1
-    
-    side = (side+right) % len(area[bottom])
+
+    side = (side + right) % len(area[bottom])
     bottom += down
 
 print(trees)
