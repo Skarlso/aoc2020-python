@@ -1,5 +1,3 @@
-import re
-
 my_file = open("day19/input.txt", "r")
 content = my_file.read()
 
@@ -7,22 +5,26 @@ L = [line.strip() for line in content.splitlines()]
 R = {}
 C = {}
 
+
 def match_list(line, st, ed, rules):
-    if st==ed and not rules:
+    if st == ed and not rules:
         return True
-    if st==ed:
+    if st == ed:
         return False
     if not rules:
         return False
 
     ret = False
-    for i in range(st+1, ed+1):
+    for i in range(st + 1, ed + 1):
         if match(line, st, i, rules[0]) and match_list(line, i, ed, rules[1:]):
             ret = True
 
     return ret
 
+
 DP = {}
+
+
 def match(line, st, ed, rule):
     key = (st, ed, rule)
     if key in DP:
@@ -38,6 +40,7 @@ def match(line, st, ed, rule):
 
     DP[key] = ret
     return ret
+
 
 def solve():
     ans = 0
@@ -56,5 +59,6 @@ def solve():
             if match(line, 0, len(line), '0'):
                 ans += 1
     return ans
+
 
 print(solve())
