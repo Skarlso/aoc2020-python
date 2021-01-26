@@ -33,16 +33,20 @@ def solve(image, p, tiles):
 def can_fit(image, m1, p):
     if p[0]-1 >= 0:
         # match up
-        pass
+        if try_match(image[p[0]-1][p[1]], m1, match_up):
+            return True
     if p[0]+1 < len(image):
         # match down
-        pass
+        if try_match(image[p[0]+1][p[1]], m1, match_down):
+            return True
     if p[1]+1 < len(image):
         # match right
-        pass
+        if try_match(image[p[0]][p[1]+1], m1, match_right):
+            return True
     if p[1]-1 >= 0:
         # match left
-        pass
+        if try_match(image[p[0]][p[1]-1], m1, match_left):
+            return True
     return False
 
 
@@ -57,7 +61,8 @@ def pretty_print(tiles):
 
 
 def try_match(m1, m2, f) -> bool:
-    m1 = np.flipud(m1)
+    ## match, rotate, flip, rotate, flip
+    return False
 
 
 def match_up(m1, m2) -> bool:
